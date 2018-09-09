@@ -1,0 +1,31 @@
+<p-dataView [value]="links" [paginator]="true" [rows]="20" paginatorPosition="both" *ngIf="links">
+  <p-header>
+    <ng-content></ng-content>
+  </p-header>
+  <ng-template let-link pTemplate="listItem">
+    <div class="ui-g" style="padding: 2em;border-bottom: 1px solid #d9d9d9">
+      <div class="ui-g-12 ui-md-8 link-details">
+        <div class="ui-g">
+          <div class="ui-g-2 ui-sm-6">Short link: </div>
+          <div class="ui-g-10 ui-sm-6"><b>{{link.shortLink|shortLink}}</b></div>
+
+          <div class="ui-g-2 ui-sm-6">Url: </div>
+          <div class="ui-g-10 ui-sm-6"><b>{{link.url}}</b></div>
+
+          <div class="ui-g-2 ui-sm-6">Views: </div>
+          <div class="ui-g-10 ui-sm-6"><b>{{link.views}}</b></div>
+        </div>
+        <div>
+          <span *ngFor="let tag of link.tags">
+            <button pButton type="button" (click)="serchByTag(tag.id)" class="ui-button-rounded">{{tag.title}}</button>
+          </span>
+        </div>
+      </div>
+      <div class="ui-g-12 ui-md-1 search-icon">
+        <a [routerLink]="['/linkProfile', link.shortLink]">
+          <button pButton type="button" icon="pi pi-check"></button>
+        </a>
+      </div>
+    </div>
+  </ng-template>
+</p-dataView>

@@ -1,0 +1,64 @@
+<form [formGroup]="userform" (ngSubmit)="onSubmit()" *ngIf="user">
+    <p-panel header="User form">
+        <div class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid" style="margin: 10px 0px">
+            <div class="ui-grid-row">
+                <div class="ui-grid-col-2">
+                    Login *:
+                </div>
+                <div class="ui-grid-col-6">
+                    <input pInputText type="text" (change)="checkLoginIdentical()" formControlName="login" [(ngModel)]="user.login" placeholder="Login"
+                    />
+                </div>
+                <div class="ui-grid-col-4" *ngIf="loiginIdentical">
+                    <div class="ui-message ui-messages-error ui-corner-all">
+                        <i class="fa fa-close"></i>
+                        This login already exist
+                    </div>
+                </div>
+                <div class="ui-grid-col-4" *ngIf="!loiginIdentical">
+                    <div class="ui-message ui-messages-error ui-corner-all" *ngIf="!userform.controls['login'].valid&&userform.controls['login'].dirty">
+                        <i class="fa fa-close"></i>
+                        <validator-message [field]="userform.get('login')"></validator-message>
+                    </div>
+                </div>
+            </div>
+            <form formGroupName="passwords">
+                <div class="ui-grid-row">
+                    <div class="ui-grid-col-2">
+                        Password *:
+                    </div>
+                    <div class="ui-grid-col-6">
+                        <input pInputText type="password" [(ngModel)]="user.password" formControlName="pwd" placeholder="Password" />
+                    </div>
+                    <div class="ui-grid-col-4">
+                        <div class="ui-message ui-messages-error ui-corner-all" *ngIf="userform.get('passwords').get('pwd').invalid && userform.get('passwords').get('pwd').touched">
+                            <i class="fa fa-close"></i>
+                            <validator-message [field]="userform.get('passwords').get('pwd')"></validator-message>
+                        </div>
+                    </div>
+                </div>
+                <div class="ui-grid-row">
+                    <div class="ui-grid-col-2">
+                        Confirm password *:
+                    </div>
+                    <div class="ui-grid-col-6">
+                        <input pInputText type="password" formControlName="confirm" placeholder="Confirm password" />
+                    </div>
+                    <div class="ui-grid-col-4">
+                        <div class="ui-message ui-messages-error ui-corner-all" *ngIf="!userform.get('passwords').valid&&userform.get('passwords').get('confirm').valid">
+                            <i class="fa fa-close"></i>
+                            <validator-message [field]="userform.get('passwords')"></validator-message>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <div class="ui-grid-row">
+                <div class="ui-grid-col-2"></div>
+                <div class="ui-grid-col-6">
+                    <button pButton type="submit" label="Submit" [disabled]="!loiginIdentical&&!userform.valid"></button>
+                </div>
+                <div class="ui-grid-col-4"></div>
+            </div>
+        </div>
+    </p-panel>
+</form>

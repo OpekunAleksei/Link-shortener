@@ -1,0 +1,2 @@
+<app-link-profile-meta *ngIf="!isLinkUpdate && link" (isUpdateStart)="isLinkUpdate=$event" [link]="link"></app-link-profile-meta>
+<app-link-edit *ngIf="isLinkUpdate && link" (updateComplete)="updateLink($event)" [link]="link"></app-link-edit>

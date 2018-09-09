@@ -1,0 +1,26 @@
+<div *ngIf="!editLink" class="ui-g-12 ui-md-4 ui-md-offset-4">
+    <div class="ui-inputgroup">
+        <input class="ui-g-12" type="text" pInputText placeholder="Paste a link to shorten it" [(ngModel)]="link.url">
+        <button [disabled]="!link.url" pButton (click)="shorten()" type="button" label="SHORTEN" class="ui-button-rounded"></button>
+    </div>
+</div>
+<div *ngIf="existLink&&!editLink" class="ui-g" style="padding: 2em;border-bottom: 1px solid #d9d9d9">
+    <div class="ui-g-12 ui-md-8 link-details">
+        <div class="ui-g">
+            <div class="ui-g-2 ui-sm-6">Short link: </div>
+            <div class="ui-g-10 ui-sm-6"><b>{{existLink.shortLink}}</b></div>
+
+            <div class="ui-g-2 ui-sm-6">Url: </div>
+            <div class="ui-g-10 ui-sm-6"><b>{{existLink.url}}</b></div>
+
+            <div class="ui-g-2 ui-sm-6">Views: </div>
+            <div class="ui-g-10 ui-sm-6"><b>{{existLink.views}}</b></div>
+        </div>
+    </div>
+    <div class="ui-g-12 ui-md-1 search-icon">
+        <a [routerLink]="['/linkProfile', existLink.shortLink]">
+            <button pButton type="button" icon="pi pi-check"></button>
+        </a>
+    </div>
+</div>
+<app-link-edit [link]="link" *ngIf="editLink"></app-link-edit>

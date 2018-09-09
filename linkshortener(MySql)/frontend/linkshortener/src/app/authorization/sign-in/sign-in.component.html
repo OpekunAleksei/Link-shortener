@@ -1,0 +1,41 @@
+<form [formGroup]="userform" (ngSubmit)="onSubmit()" *ngIf="user">
+  <p-panel header="User form">
+    <div class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid" style="margin: 10px 0px">
+      <div class="ui-grid-row">
+        <div class="ui-grid-col-2">
+          Login *:
+        </div>
+        <div class="ui-grid-col-6">
+          <input pInputText type="text" formControlName="login" [(ngModel)]="user.login" placeholder="Login" />
+        </div>
+        <div class="ui-grid-col-4">
+          <div class="ui-message ui-messages-error ui-corner-all" *ngIf="!userform.controls['login'].valid&&userform.controls['login'].dirty">
+            <i class="fa fa-close"></i>
+            <validator-message [field]="userform.get('login')"></validator-message>
+          </div>
+        </div>
+      </div>
+      <div class="ui-grid-row">
+        <div class="ui-grid-col-2">
+          Password *:
+        </div>
+        <div class="ui-grid-col-6">
+          <input pInputText type="password"  formControlName="password" [(ngModel)]="user.password" placeholder="Password" />
+        </div>
+        <div class="ui-grid-col-4">
+          <div class="ui-message ui-messages-error ui-corner-all" *ngIf="!userform.controls['password'].valid&&userform.controls['password'].dirty">
+            <i class="fa fa-close"></i>
+            <validator-message [field]="userform.get('password')"></validator-message>
+          </div>
+        </div>
+      </div>
+      <div class="ui-grid-row">
+        <div class="ui-grid-col-2">
+          <div class="ui-grid-col-6">
+            <button pButton type="submit" label="Submit" [disabled]="!userform.valid"></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </p-panel>
+</form>

@@ -1,0 +1,55 @@
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+
+<div class="container" *ngIf="link">
+  <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad">
+    <div class="panel panel-info">
+      <div class="panel-body">
+        <div class=" col-md-9 col-lg-9 ">
+          <table class="table table-linl-information">
+            <tbody>
+              <tr>
+                <td>Full url:</td>
+                <td>{{link.url}}</td>
+              </tr>
+              <tr>
+                <td>Shotr link:</td>
+                <td>{{link.shortLink|shortLink}}</td>
+              </tr>
+              <tr>
+                <td>Information:</td>
+                <td>{{link.description}}</td>
+              </tr>
+              <tr>
+                <td>Views</td>
+                <td>{{link.views}}</td>
+              </tr>
+              <tr>
+                <td>Tags</td>
+                <td>
+                  <div>
+                    <span *ngFor="let tag of link.tags">
+                      <button pButton type="button" (click)="serchByTag(tag)" class="ui-button-rounded">{{tag}}</button>
+                    </span>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="isUserLink" class="panel-footer">
+      <span class="pull-right">
+        <a data-original-title="Edit link" (click)="startUpdate()" data-toggle="tooltip" type="button" class="btn btn-sm btn-warning">
+          <i class="glyphicon glyphicon-edit"></i>
+        </a>
+        <a data-original-title="Remove this link" (click)="deleteLink()" data-toggle="tooltip" type="button" class="btn btn-sm btn-danger">
+          <i class="glyphicon glyphicon-remove"></i>
+        </a>
+      </span>
+    </div>
+  </div>
+</div>
