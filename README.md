@@ -1,2 +1,2 @@
 # Link-shortener
-Тесты находятся в linkshortener(mongoDb) модуле linkshortener-service
+Unit tests in linkshortener(mongoDb) module linkshortener-service
